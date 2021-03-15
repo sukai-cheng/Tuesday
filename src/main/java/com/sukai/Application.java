@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.sukai.mapper")
 @SpringBootApplication
 public class Application {
+    
     public static void main(String[] args) {
         // springApplication: spring应用类    作用: 用来启动springboot应用
         // 参数1: 传入入口类 类对象   参数2: main函数的参数
