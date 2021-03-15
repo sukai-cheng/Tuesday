@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sukai.mapper.BookMapper">
+    <select id="getBookByCategory" resultType="com.sukai.pojo.Book">
+        select * from book b,category c where b.cid = #{cid} and b.cid = c.id;
+    </select>
+
+    <select id="searchByKeywords" parameterType="java.lang.String" resultType="com.sukai.pojo.Book">
+        select * from book b where b.title like #{keywords} or b.author like #{keywords}
+    </select>
+</mapper>
