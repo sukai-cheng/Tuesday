@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sukai.mapper.BookMapper">
+
     <select id="getBookByCategory" resultType="com.sukai.pojo.Book">
-        select * from book b,category c where b.cid = #{cid} and b.cid = c.id;
+        select *
+        from book b,
+             category c
+        where b.cid = #{cid}
+          and b.cid = c.id;
     </select>
 
     <select id="searchByKeywords" parameterType="java.lang.String" resultType="com.sukai.pojo.Book">
-        select * from book b where b.title like #{keywords} or b.author like #{keywords}
+        select *
+        from book b
+        where b.title like #{keywords}
+           or b.author like #{keywords}
     </select>
+
+    <resultMap id="AddBookResultMap" type="com.sukai.VO.BookVO">
+        <id column="id" property="id"/>
+        <id column="cid" property="cid"/>
+        <result column="title" property="title"/>
+        <result column="author" property="author"/>
+        <result column="date" property="date"/>
+        <result column="press" property="press"/>
+        <result column="abs" property="abs"/>
+        <result column="name" property="category"/>
+        <result column="cover" property="cover"/>
+    </resultMap>
+
+    <select id="getBookById" resultMap="AddBookResultMap">
+        select b.id,b.cid,b.title,b.author,b.cover,b.date,b.press,b.abs,c.name
+        from book b,
+             category c
+        where b.id = #{id}
+          and c.id = b.cid
+    </select>
+
+    <update id="updateBookVO" parameterType="com.sukai.VO.BookVO">
+        update book b, category c
+        set
+        b.cid = #{cid},
+        b.title=#{title},
+        b.author=#{author},
+        b.cover=#{cover},
+        b.date=#{date},
+        b.press=#{press},
+        b.abs=#{abs}
+        where b.id=#{id} and c.id = #{cid}
+    </update>
+
 </mapper>

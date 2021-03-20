@@ -1,6 +1,6 @@
 package com.sukai.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.sukai.VO.BookVO;
 import com.sukai.mapper.BookMapper;
 import com.sukai.pojo.Book;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class BookService {
     /**
      * 查出所有书籍
      *
-     * @return
+     * @return Book的集合
      */
     public List<Book> list() {
 
@@ -33,21 +33,45 @@ public class BookService {
     }
 
     /**
-     * 新增书籍
+     * 找到对应ID的书籍
      *
-     * @param book 书
+     * @param id 书籍编号
+     * @return Book
      */
-    public void add(Book book) {
-        bookMapper.insert(book);
+    public BookVO get(int id) {
+
+        return bookMapper.getBookById(id);
     }
 
     /**
      * 更新书籍
      *
-     * @param book 书
+     * @param bookVO 书
      */
-    public void update(Book book) {
-        bookMapper.update(book, new QueryWrapper<Book>().eq("id", book.getId()));
+    public void update(BookVO bookVO) {
+        Book book1 = bookMapper.selectById(bookVO.getId());
+        if (book1 == null) {
+            Book book = new Book();
+
+            book.setCid(bookVO.getCid());
+
+            book.setTitle(bookVO.getTitle());
+
+            book.setAuthor(bookVO.getAuthor());
+
+            book.setAbs(bookVO.getAbs());
+
+            book.setAuthor(bookVO.getAuthor());
+
+            book.setDate(bookVO.getDate());
+
+            book.setPress(bookVO.getPress());
+
+            bookMapper.insert(book);
+        } else {
+            bookMapper.updateBookVO(bookVO);
+        }
+
     }
 
     /**

@@ -1,22 +1,18 @@
-package com.sukai.pojo;
+package com.sukai.VO;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author chengsukai
  */
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "book")
-public class Book {
+@Data
+public class BookVO {
 
-    @TableId(type = IdType.AUTO)
     int id;
 
     int cid;
@@ -33,4 +29,5 @@ public class Book {
 
     String abs;
 
+    String category;
 }
