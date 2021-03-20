@@ -17,9 +17,9 @@ import lombok.NoArgsConstructor;
 public class Book {
 
     @TableId(type = IdType.AUTO)
-    int id;
+    Integer id;
 
-    int cid;
+    Integer cid;
 
     String cover;
 

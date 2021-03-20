@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @TableName(value = "user")
 public class User {
-    int id;
+    Integer id;
     String username;
     String password;
 }

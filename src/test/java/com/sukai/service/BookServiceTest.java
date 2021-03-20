@@ -41,20 +41,7 @@ class BookServiceTest {
         bookVO.setPress("press");
         bookVO.setTitle("title");
     }
-    @Test
-    void testUpdate(){
-        BookVO bookVO = new BookVO();
-        bookVO.setAbs("xxx");
-        bookVO.setAuthor("csk");
-        bookVO.setCategory("文秀");
-        bookVO.setCid(2);
-        bookVO.setId(1);
-        bookVO.setDate("2019-2-3");
-        bookVO.setCover("test");
-        bookVO.setPress("press");
-        bookVO.setTitle("title");
-        bookService.update(bookVO);
-    }
+
     @Test
     void testSearch(){
         List<Book> list = bookService.search("承苏凯");
